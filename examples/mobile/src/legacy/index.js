@@ -39,12 +39,16 @@ class LegacyExample extends React.Component {
     });
   };
 
-  clearFromStorage = async () => {
+  removeFromStorage = async () => {
     if (this.state.key) {
       await storage.remove(this.state.key);
     }
 
     await this.readFromStorage();
+  };
+
+  clearStorage = async () => {
+    await storage.clearStorage();
   };
 
   showKeys = async () => {
@@ -85,7 +89,8 @@ class LegacyExample extends React.Component {
         <View style={styles.buttonsContainer}>
           <Button title={'Save'} onPress={this.saveToStorage} />
           <Button title={'Read'} onPress={this.readFromStorage} />
-          <Button title={'Clear'} onPress={this.clearFromStorage} />
+          <Button title={'Remove'} onPress={this.removeFromStorage} />
+          <Button title={'Clear'} onPress={this.clearStorage} />
           <Button title={'Show keys'} onPress={this.showKeys} />
         </View>
       </View>
